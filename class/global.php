@@ -131,7 +131,7 @@
 //	$id が過去登録されたかどうか
 	function is_registered($id) {
 		if($registered = @file(REGISTER)):
-			if(array_search($id."\n",$registered)!==false && !ereg("[\.\/]+",$id) )//改行記号必須
+			if(array_search($id."\n",$registered)!==false && !preg_match("/[\.\/]+/",$id) )//改行記号必須
 				return true;
 			else
 				return false;

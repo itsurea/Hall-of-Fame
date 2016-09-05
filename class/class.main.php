@@ -1400,7 +1400,7 @@ HTML;
 			case($_POST["shop_buy"]):
 				$ShopList	= ShopList();//売ってるものデータ
 				if($_POST["item_no"] && in_array($_POST["item_no"],$ShopList)) {
-					if(ereg("^[0-9]",$_POST["amount"])) {
+					if(preg_match("/^[0-9]/",$_POST["amount"])) {
 						$amount	= (int)$_POST["amount"];
 						if($amount == 0)
 							$amount	= 1;
@@ -1429,7 +1429,7 @@ HTML;
 				break;
 			case($_POST["shop_sell"]):
 				if($_POST["item_no"] && $this->item[$_POST["item_no"]]) {
-					if(ereg("^[0-9]",$_POST["amount"])) {
+					if(preg_match("/^[0-9]/",$_POST["amount"])) {
 						$amount	= (int)$_POST["amount"];
 						if($amount == 0)
 							$amount	= 1;
@@ -2637,7 +2637,7 @@ JS_HTML;
 			return false;
 		}
 		// 数量の確認
-		if(ereg("^[0-9]",$_POST["Amount"])) {
+		if(preg_match("/^[0-9]/",$_POST["Amount"])) {
 			$amount	= (int)$_POST["Amount"];
 			if($amount == 0)
 				$amount	= 1;
@@ -2988,7 +2988,7 @@ JS_HTML;
 		}
 		if($_POST["color"]) {
 			if(	strlen($_POST["color"]) != 6 &&
-				!ereg("^[0369cf]{6}",$_POST["color"]))
+				!preg_match("/^[0369cf]{6}/",$_POST["color"]))
 				return "error 12072349";
 			$this->UserColor	= $_POST["color"];
 			ShowResult("Setting changed.","margin15");
@@ -3318,6 +3318,8 @@ HTML;
 				unset($_SESSION["$key"]);
 		}
 
+		session_destroy();
+
 		session_id($NewID);
 		session_start();
 		$_SESSION	= unserialize($temp);
@@ -3336,8 +3338,8 @@ HTML;
 		if(empty($_POST["Newid"]))
 			return array(false,"Enter ID.");
 
-		if(!ereg("[0-9a-zA-Z]{4,16}",$_POST["Newid"])||
-			ereg("[^0-9a-zA-Z]+",$_POST["Newid"]))//正規表現
+		if(!preg_match("/[0-9a-zA-Z]{4,16}/",$_POST["Newid"])||
+			preg_match("/[^0-9a-zA-Z]+/",$_POST["Newid"]))//正規表現
 			return array(false,"Bad ID");
 
 		if(strlen($_POST["Newid"]) < 4 || 16 < strlen($_POST["Newid"]))//文字制限
@@ -3353,11 +3355,11 @@ HTML;
 		if(empty($_POST["pass1"]) || empty($_POST["pass2"]))
 			return array(false,"Enter both Password.");
 
-		if(!ereg("[0-9a-zA-Z]{4,16}",$_POST["pass1"]) || ereg("[^0-9a-zA-Z]+",$_POST["pass1"]))
+		if(!preg_match("/[0-9a-zA-Z]{4,16}/",$_POST["pass1"]) || preg_match("/[^0-9a-zA-Z]+/",$_POST["pass1"]))
 			return array(false,"Bad Password 1");
 		if(strlen($_POST["pass1"]) < 4 || 16 < strlen($_POST["pass1"]))//文字制限
 			return array(false,"Bad Password 1");
-		if(!ereg("[0-9a-zA-Z]{4,16}",$_POST["pass2"]) || ereg("[^0-9a-zA-Z]+",$_POST["pass2"]))
+		if(!preg_match("/[0-9a-zA-Z]{4,16}/",$_POST["pass2"]) || preg_match("/[^0-9a-zA-Z]+/",$_POST["pass2"]))
 			return array(false,"Bad Password 2");
 		if(strlen($_POST["pass2"]) < 4 || 16 < strlen($_POST["pass2"]))//文字制限
 			return array(false,"Bad Password 2");
