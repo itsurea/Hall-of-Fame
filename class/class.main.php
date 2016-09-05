@@ -1,4 +1,4 @@
-<?
+<?php
 include(CLASS_USER);
 include(GLOBAL_PHP);
 class main extends user {
@@ -1813,7 +1813,7 @@ JS_HTML;
 				$BattleResult = "d";//引分
 			*/
 			//list($message,$BattleResult)	= $Rank->Challenge(&$this);
-			$Result	= $Ranking->Challenge(&$this);
+			$Result	= $Ranking->Challenge($this);
 
 			//if($Result === "Battle")
 			//	$this->RankRecord($BattleResult,"CHALLENGE",false);
@@ -1933,7 +1933,7 @@ JS_HTML;
 	<p>ランキング戦用のチーム設定。<br />
 	ここで設定したチームで戦います。</p>
 	</div>
-	<?$this->ShowCharacters($this->char,CHECKBOX,explode("<>",$this->party_rank));?>
+	<?php $this->ShowCharacters($this->char,CHECKBOX,explode("<>",$this->party_rank));?>
 
 	<div style="margin:15px">
 	<?=$left_mes?>
@@ -1942,7 +1942,7 @@ JS_HTML;
 	<p>設定後、<?=$reset=floor(RANK_TEAM_SET_TIME/(60*60))?>時間は変更できません。<br />Team setting disabled after <?=$reset?>hours once set.</p>
 	</form>
 	</div>
-<?
+<?php
 	}
 //////////////////////////////////////////////////
 	function RecruitProcess() {
@@ -2016,7 +2016,7 @@ JS_HTML;
 	Need to make a space to recruit new character.</p>
 	<p>キャラ数が限界に達しています。<br>
 	新しいキャラを入れるには空きが必要です。</p>
-	</div><?
+	</div><?php
 			return false;
 		}
 		include_once(CLASS_MONSTER);
@@ -2042,19 +2042,19 @@ JS_HTML;
 	<h4>Sort of New Character</h4>
 	<table cellspacing="0"><tbody><tr>
 	<td class="td1" style="text-align:center">
-	<?$char[0]->ShowImage()?><?$char[1]->ShowImage()?><br>
+	<?php $char[0]->ShowImage()?><?php $char[1]->ShowImage()?><br>
 	<input type="radio" name="recruit_no" value="1" style="margin:3px"><br>
 	<?=MoneyFormat(2000)?></td>
 	<td class="td1" style="text-align:center">
-	<?$char[2]->ShowImage()?><?$char[3]->ShowImage()?><br>
+	<?php $char[2]->ShowImage()?><?php $char[3]->ShowImage()?><br>
 	<input type="radio" name="recruit_no" value="2" style="margin:3px"><br>
 	<?=MoneyFormat(2000)?></td>
 	<td class="td1" style="text-align:center">
-	<?$char[4]->ShowImage()?><?$char[5]->ShowImage()?><br>
+	<?php $char[4]->ShowImage()?><?php $char[5]->ShowImage()?><br>
 	<input type="radio" name="recruit_no" value="3" style="margin:3px"><br>
 	<?=MoneyFormat(2500)?></td>
 	<td class="td1" style="text-align:center">
-	<?$char[6]->ShowImage()?><?$char[7]->ShowImage()?><br>
+	<?php $char[6]->ShowImage()?><?php $char[7]->ShowImage()?><br>
 	<input type="radio" name="recruit_no" value="4" style="margin:3px"><br>
 	<?=MoneyFormat(4000)?></td>
 	</tr><tr>
@@ -2083,7 +2083,7 @@ JS_HTML;
 	日本語は1文字 = 2 letter.
 	</p>
 	</td></tr></tbody></table>
-	</form><?
+	</form><?php
 	}
 //////////////////////////////////////////////////
 //	鍛冶屋精錬ヘッダ
@@ -2105,7 +2105,7 @@ JS_HTML;
 <div style="clear:both"></div>
 </div>
 <h4>アイテムの精錬<a name="refine"></a></h4>
-<div style="margin:0 20px"><?
+<div style="margin:0 20px"><?php
 	}
 //////////////////////////////////////////////////
 //	鍛冶屋処理(精錬)
@@ -2254,7 +2254,7 @@ JS_HTML;
 		print("</div>\n");
 	?>
 	</div>
-<?
+<?php
 	}
 //////////////////////////////////////////////////
 //	鍛冶屋 製作 ヘッダ
@@ -2276,7 +2276,7 @@ JS_HTML;
 <div style="clear:both"></div>
 </div>
 <h4>アイテムの製作<a name="refine"></a></h4>
-<div style="margin:0 15px"><?
+<div style="margin:0 15px"><?php
 	}
 //////////////////////////////////////////////////
 //	製作処理
@@ -2380,7 +2380,7 @@ JS_HTML;
 <input type="submit" class="btn" name="Create" value="Create">
 <input type="reset" class="btn" value="Reset">
 <input type="hidden" name="Create" value="1"><br />
-<?
+<?php
 		// 追加素材の表示
 		print('<div class="bold u" style="margin-top:15px">追加素材</div>'."\n");
 		for($item_no=7000; $item_no<7200; $item_no++) {
@@ -2395,7 +2395,7 @@ JS_HTML;
 <input type="submit" class="btn" name="Create" value="Create">
 <input type="reset" class="btn" value="Reset">
 </form>
-<?
+<?php
 		} else {
 			print("あんたが持ってる素材じゃ何も作れそうに無いな。");
 		}
@@ -2415,7 +2415,7 @@ JS_HTML;
 		?>
 </div>
 </div>
-<?
+<?php
 		return $result;
 	}
 //////////////////////////////////////////////////
@@ -2459,7 +2459,7 @@ JS_HTML;
 <div style="float:left;width:50px;">
 <img src="<?=IMG_CHAR?>ori_003.gif" />
 </div>
-<div style="float:right;width:450px;"><?
+<div style="float:right;width:450px;"><?php
 
 		$this->AuctionJoinMember();
 		if($this->AuctionEnter()) {
@@ -2484,7 +2484,7 @@ JS_HTML;
 </div>
 </div>
 <h4>アイテム オークション(Item Auction)</h4>
-<div style="margin-left:20px"><?
+<div style="margin-left:20px"><?php
 	}
 //////////////////////////////////////////////////
 //	オークションの表示
@@ -2494,8 +2494,8 @@ JS_HTML;
 <a name="log"></a>
 <h4>オークションログ(AuctionLog)</h4>
 <div style="margin-left:20px">
-<?$ItemAuction->ShowLog();?>
-</div><?
+<?php $ItemAuction->ShowLog();?>
+</div><?php
 	}
 //////////////////////////////////////////////////
 //	入札処理
@@ -2684,7 +2684,7 @@ JS_HTML;
 <h4>出品する</h4>
 <div style="margin-left:20px">
 <div class="u bold">出品可能な物一覧</div>
-<?
+<?php
 		if(!$this->item) {
 			print("No items<br />\n");
 			return false;
@@ -2731,7 +2731,7 @@ JS_HTML;
 </td></tr></table>
 </form>
 
-<?
+<?php
 		
 	}
 //////////////////////////////////////////////////
@@ -2854,7 +2854,7 @@ JS_HTML;
 	<input type="reset" class="btn" value="Reset"><br>
 	Save this party:<input type="checkbox" name="memory_party" value="1">
 	</div></form>
-<?
+<?php
 	}
 //////////////////////////////////////////////////
 //	町の表示
@@ -2875,7 +2875,7 @@ JS_HTML;
 <li><a href="?menu=work">アルバイト</a></li>
 </ul>
 </li>
-<?
+<?php
 		}
 		// 斡旋所
 		if($PlaceList["Recruit"])
@@ -2889,7 +2889,7 @@ JS_HTML;
 <li><a href="?menu=create">製作工房(Create)</a></li>
 </ul>
 </li>
-<?
+<?php
 		}
 		// オークション会場
 		if($PlaceList["Auction"] && AUCTION_TOGGLE)
@@ -2913,7 +2913,7 @@ JS_HTML;
 <input type="text" maxlength="60" name="message" class="text" style="width:300px"/>
 <input type="submit" value="post" class="btn" style="width:100px" />
 </form>
-<?
+<?php
 		if(!file_exists($file))
 			return false;
 		$log	= file($file);
@@ -3009,7 +3009,7 @@ JS_HTML;
 <tr><td><input type="checkbox" name="no_JS_itemlist" value="1" <?=$no_JS_itemlist?>></td><td>アイテムリストにJavaScriptを使わない</td></tr>
 </tbody></table>
 <!--<tr><td>None</td><td><input type="checkbox" name="none" value="1"></td></tr>-->
-Color : <?
+Color : <?php
 		$color	= file(COLOR_FILE);
 		print('<select name="color" class="bgcolor">'."\n");
 		foreach($color as $value) {
@@ -3039,7 +3039,7 @@ Color : <?
 PassWord : <input type="text" class="text" name="deletepass" size="20">
 <input type="submit" class="btn" name="delete" value="delete" style="width:100px">
 </form>
-</div><?
+</div><?php
 		return $Result;
 	}
 ////////// Show //////////////////////////////////////////////////////
@@ -3093,7 +3093,7 @@ PassWord : <input type="text" class="text" name="deletepass" size="20">
 	<a href="?tutorial">チュートリアル</a> - 戦闘の基本(登録後,1時間だけ表示されます)
 	</div>
 
-<?
+<?php
 		}
 	}
 
@@ -3309,13 +3309,14 @@ HTML;
 		session_id($OldID);
 		session_start();
 
-		if($_SESSION):
+		if($_SESSION)
+		{
 		//	session_destroy();//Sleipnirだとおかしい...?(最初期)
 		//	unset($_SESSION);//こっちは大丈夫(やっぱりこれは駄目かも)(修正後)
 			//結局,セッションをforeachでループして1個づつunset(2007/9/14 再修正)
 			foreach($_SESSION as $key => $val)
 				unset($_SESSION["$key"]);
-		endif;
+		}
 
 		session_id($NewID);
 		session_start();
@@ -3398,7 +3399,7 @@ HTML;
 	<div style="margin:15px">
 	Maximum users.<br />
 	登録者数が限界に達しているようです。
-	</div><?
+	</div><?php
 			return false;
 		}
 		$idset=($_POST["Newid"]?" value=$_POST[Newid]":NULL);
@@ -3425,7 +3426,7 @@ HTML;
 	</tbody></table>
 	</form>
 	</div>
-<?
+<?php
 	}
 
 //////////////////////////////////////////////////
@@ -3454,7 +3455,7 @@ HTML;
 </tbody></table>
 </form>
 
-<h4 style="width:350px">Ranking</h4><?
+<h4 style="width:350px">Ranking</h4><?php
 	include_once(CLASS_RANKING);
 	$Rank	= new Ranking();
 	$Rank->ShowRanking(0,4);
@@ -3487,7 +3488,7 @@ HTML;
 <div style="margin:15px">
 <h4>info.</h4>
 Users : <?=UserAmount()?> / <?=MAX_USERS?><br />
-<?
+<?php
 	$Abandon	= ABANDONED;
 	print(floor($Abandon/(60*60*24))."日データに変化無しでデータ消える。");
 print("</div>\n");
@@ -3517,7 +3518,7 @@ print("</div>\n");
 	<div style="width:50%;float:right"><span class="bold">Time</span> : <?=floor($this->time)?>/<?=MAX_TIME?></div>
 	</div>
 	<div class="c-both"></div>
-	</div><?
+	</div><?php
 			print('</div>');
 		} else if(!$this->name && $this->islogin) {// 初回ログインの人
 			print('<div id="menu">');
@@ -3547,14 +3548,14 @@ print("</div>\n");
 		?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-<head><?$this->HtmlScript();?>
+<head><?php $this->HtmlScript();?>
 <title><?=TITLE?></title>
 </head>
 <body><a name="top"></a>
 <div id="main_frame">
 <div id="title"><img src="./image/title03.gif"></div>
-<?$this->MyMenu();?><div id="contents">
-<?
+<?php $this->MyMenu();?><div id="contents">
+<?php
 	}
 
 //////////////////////////////////////////////////
@@ -3565,7 +3566,7 @@ print("</div>\n");
 <link rel="stylesheet" href="./basis.css" type="text/css">
 <link rel="stylesheet" href="./style.css" type="text/css">
 <script type="text/javascript" src="prototype.js"></script>
-<?
+<?php
 	}
 
 //////////////////////////////////////////////////
@@ -3574,7 +3575,7 @@ print("</div>\n");
 		?>
 </div>
 <div id="foot">
-<a href="?update">UpDate</a> - <?
+<a href="?update">UpDate</a> - <?php
 	if(BBS_BOTTOM_TOGGLE)
 		print('<a href="?bbs">BBS</a> - '."\n");
 		?>
@@ -3586,7 +3587,7 @@ Copy Right <a href="http://tekito.kanichat.com/">Tekito</a> 2007-2008.<br>
 </div>
 </div>
 </body>
-</html><?
+</html><?php
 	}
 
 //////////////////////////////////////////////////
@@ -3682,7 +3683,7 @@ Copy Right <a href="http://tekito.kanichat.com/">Tekito</a> 2007-2008.<br>
 
 		?>
 	<form action="<?=INDEX?>" method="post" style="margin:15px">
-	<?ShowError($error);?>
+	<?php ShowError($error);?>
 	<h4>Name of Team</h4>
 	<p>Decide the Name of the team.<br />
 	It should be more than 1 and less than 16 letters.<br />
@@ -3691,7 +3692,7 @@ Copy Right <a href="http://tekito.kanichat.com/">Tekito</a> 2007-2008.<br>
 	日本語でもOK。<br />
 	日本語は 1文字 = 2 letter</p>
 	<div class="bold u">TeamName</div>
-	<input class="text" style="width:160px" maxlength="16" name="name"<?print($_POST["name"]?"value=\"$_POST[name]\"":"")?>>
+	<input class="text" style="width:160px" maxlength="16" name="name"<?php print($_POST["name"]?"value=\"$_POST[name]\"":"")?>>
 	<h4>First Character</h4>
 	<p>Decide the name of Your First Charactor.<br>
 	more than 1 and less than 16 letters.</p>
@@ -3711,7 +3712,7 @@ Copy Right <a href="http://tekito.kanichat.com/">Tekito</a> 2007-2008.<br>
 	<p>最初のキャラの職と性別</p>
 	<input class="btn" style="width:160px" type="submit" value="Done" name="Done">
 	<input type="hidden" value="1" name="Done">
-	<input class="btn" style="width:160px" type="submit" value="logout" name="logout"></form><?
+	<input class="btn" style="width:160px" type="submit" value="logout" name="logout"></form><?php
 			return true;
 	}
 //////////////////////////////////////////////////
@@ -3728,7 +3729,7 @@ Copy Right <a href="http://tekito.kanichat.com/">Tekito</a> 2007-2008.<br>
 <input type="text" maxlength="60" name="message" class="text" style="width:300px"/>
 <input type="submit" value="post" class="btn" style="width:100px" />
 </form>
-<?
+<?php
 		if(!file_exists($file))
 			return false;
 		$log	= file($file);
